@@ -11,6 +11,7 @@ class PrincipalAdmin : AppCompatActivity(){
 
     //es parte de la librería que sirve para leer los códigos
     lateinit var intentIntegrator: IntentIntegrator
+    var a = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +21,16 @@ class PrincipalAdmin : AppCompatActivity(){
 
         val asignar = findViewById<Button>(R.id.btnAsignar)
         asignar.setOnClickListener{
+            a = false
+            intentIntegrator
+                .setPrompt("Enfoque el código QR")
+                .setOrientationLocked(false)
+                .initiateScan()
+        }
+
+        val redimir = findViewById<Button>(R.id.btnRedimir)
+        asignar.setOnClickListener{
+            a = true
             intentIntegrator
                 .setPrompt("Enfoque el código QR")
                 .setOrientationLocked(false)
@@ -37,7 +48,11 @@ class PrincipalAdmin : AppCompatActivity(){
         val intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data)
         if(intentResult!=null){
             if(intentResult.contents != null){
-                startActivity(Intent(this, AsignarEstrella::class.java).putExtra("QR",intentResult.contents))
+                if(a==false){
+                    startActivity(Intent(this, AsignarEstrella::class.java).putExtra("QR",intentResult.contents))
+                }else{
+                    startActivity(Intent(this, RedimirEstrella::class.java).putExtra("QR",intentResult.contents))
+                }
             }else{
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show()
             }

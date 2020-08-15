@@ -1,7 +1,5 @@
 package com.example.ssc
 
-import java.sql.Date
-import java.sql.Time
 
 class Movimiento(tipo:String, nCliente:String, fecha:String) {
 

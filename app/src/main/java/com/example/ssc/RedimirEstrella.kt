@@ -6,7 +6,9 @@ import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_asignar_estrella.*
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class RedimirEstrella : AppCompatActivity() {
 
